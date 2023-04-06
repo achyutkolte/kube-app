@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vprodb
-          image: achyutkolte/v1
+          image: vprofile/vprofiledb:V1
           args:
             - "--ignore-db-dir=lost+found"
           volumeMounts:
@@ -26,11 +26,11 @@ spec:
             - name: vprodb-port
               containerPort: 3306
           env:
-            name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: db-pass
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: db-pass
       nodeSelector:
         zone: ap-south-1a
       volumes:
